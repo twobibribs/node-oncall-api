@@ -1,7 +1,7 @@
 var sqlite3 = require('sqlite3').verbose()
 var md5 = require('md5')
 
-const DBSOURCE = "/db/db.sqlite" 
+const DBSOURCE = "db/db.sqlite" 
 
 
 let db = new sqlite3.Database(DBSOURCE, (err) => {
@@ -24,7 +24,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             // Table just created, creating some rows
             var insert = 'INSERT INTO oncall (name, email, tenant) VALUES (?,?,?)'
             db.run(insert, ["Neil Carpenter","me@neilcar.com","neilcar"])
-            db.run(insert, ["Marlon Rando","rand@neilcar.com","neilcar"])
+            db.run(insert, ["Marlon Rando","rando@neilcar.com","neilcar"])
         }
     })  
     }

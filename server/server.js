@@ -15,7 +15,7 @@ app.listen(HTTP_PORT, () => {
 });
 
 app.get("/api/oncall", (req, res, next) => {
-    var sql = "select * from user"
+    var sql = "select * from oncall"
     var params = []
     db.all(sql, params, (err, rows) => {
         if (err) {
@@ -31,7 +31,7 @@ app.get("/api/oncall", (req, res, next) => {
 
 
 app.get("/api/oncall/:id", (req, res, next) => {
-    var sql = "select * from user where id = ?"
+    var sql = "select * from oncall where id = ?"
     var params = [req.params.id]
     db.get(sql, params, (err, row) => {
         if (err) {
@@ -63,7 +63,7 @@ app.post("/api/oncall/", (req, res, next) => {
         email: req.body.email,
         tenant : req.body.tenant
     }
-    var sql ='INSERT INTO user (name, email, tenant) VALUES (?,?,?)'
+    var sql ='INSERT INTO oncall (name, email, tenant) VALUES (?,?,?)'
     var params =[data.name, data.email, data.tenant]
     db.run(sql, params, function (err, result) {
         if (err){
@@ -87,7 +87,7 @@ app.patch("/api/oncall/:id", (req, res, next) => {
         tenant : req.body.tenant 
     }
     db.run(
-        `UPDATE user set 
+        `UPDATE oncall set 
            name = coalesce(?,name), 
            email = COALESCE(?,email), 
            tenant = coalesce(?,tenant) 
@@ -108,7 +108,7 @@ app.patch("/api/oncall/:id", (req, res, next) => {
 
 app.delete("/api/oncall/:id", (req, res, next) => {
     db.run(
-        'DELETE FROM user WHERE id = ?',
+        'DELETE FROM oncall WHERE id = ?',
         req.params.id,
         function (err, result) {
             if (err){
