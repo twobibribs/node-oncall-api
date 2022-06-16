@@ -170,7 +170,7 @@ app.delete("/api/oncall/:id",verifyToken, (req, res, next) => {
 function verifyToken(req,res,next){
     //Auth header value = > send token into header
 
-    const bearerHeader = req.headers['authorization'];
+    const bearerHeader = req.headers['Authorization'];
     console.log(bearerHeader);
     //check if bearer is undefined
     if(typeof bearerHeader !== 'undefined'){
