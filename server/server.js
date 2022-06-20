@@ -42,8 +42,8 @@ app.post('/api/login',(req,res)=>{
 
     const user = {
         id:Date.now(),
-        userEmail:'',
-        password:''
+        userEmail:'does@not.exist',
+        password:'notarealpassword1!'
     }
 
     //send abpve as payload
