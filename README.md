@@ -1,24 +1,8 @@
-# node-express-rest-api-example
+# oncall-api-demo
 
-A Basic Node.js/Express REST API implementation example.
+Based on https://github.com/fraigo/node-express-rest-api-example
 
-Full Tutorial at https://developerhowto.com/2018/12/29/build-a-rest-api-with-node-js-and-express-js/
-
-# Prerequisites
-
-For Windows
-
-* Python 2.7 (for microsoft build tools)
-* Install Microsoft build tools (to build sqlite using node-gyp)
-  * Instructions here https://github.com/nodejs/node-gyp#on-windows
-  * Or install using npm (`npm install --global windows-build-tools`)
-* Node-gyp (`npm install --global node-gyp`)
-
-# Usage
-
-* Run `npm install` to installl dependencies
-* Run `npm run start` to start the local server
-* Load `http://localhost:8000` to test the endpoint. It will display a json result `{"message":"Ok"}`
+This provides an API endpoint for creating/reading/updating/deleting on-call engineers to provide a simple example of integration.
 
 # API Endpoints
 
@@ -33,20 +17,20 @@ Get a list of users
     {
       "id": 1,
       "name": "admin",
-      "email": "admin@example.com",
-      "password": "a66abb5684c45962d887564f08346e8d"
+      "email": "admin@stackpule.com",
+      "tenant": "stackpulse"
     },
     {
       "id": 2,
-      "name": "user",
-      "email": "user@example.com",
-      "password": "4da49c16db42ca04538d629ef0533fe8"
+      "name": "bob",
+      "email": "bob@neilcar.com",
+      "password": "neilcar"
     }
   ]
 }
 ```
 
-## GET /api/user/{id}
+## GET /api/user/{tenant}
 
 Get user information by user id
 
@@ -56,8 +40,8 @@ Get user information by user id
   "data": {
     "id": 1,
     "name": "admin",
-    "email": "admin@example.com",
-    "password": "a66abb5684c45962d887564f08346e8d"
+    "email": "admin@stackpule.com",
+    "tenant": "stackpulse"
   }
 }
 ```
@@ -68,9 +52,7 @@ To create a new user based on POST data (x-www-form-url-encoded)
 
 * name: User name
 * email: User email
-* password: User password
-
-![Postman example](https://developerhowto.com/wp-content/uploads/2018/12/PostMan-POST-request.png)
+* tenant: User's tenant
 
 
 ## PATCH /api/user/{id}
@@ -79,7 +61,7 @@ To update user data by id, based on POST data (x-www-form-url-encoded)
 
 * name: User name
 * email: User email
-* password: User password
+* tenant: User's tenant
 
 You can send only one attribute to update, the rest of the info remains the same. 
 
