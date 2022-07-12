@@ -59,7 +59,7 @@ app.get("/api/oncall/:id", verifyToken,(req, res, next) => {
         if(err)
             res.sendStatus(403);
         else{
-            var sql = "select * from oncall where id = ?"
+            var sql = "select * from oncall where tenant = ?"
             var params = [req.params.id]
             db.get(sql, params, (err, row) => {
                 if (err) {
