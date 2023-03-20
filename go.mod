@@ -1,6 +1,6 @@
 module github.com/twobibribs/oncall-support
 
-go 1.19.5
+go 1.19
 
 require (
     net/http v1.19.5
