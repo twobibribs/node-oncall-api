@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oncall-deployment
+  labels:
+    app: oncall
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: oncall
+  template:
+    metadata:
+      labels:
+        app: oncall
+    spec:
+      containers:
+      - name: oncall
+        image: 992382651702.dkr.ecr.us-east-1.amazonaws.com/oncall:3
+        ports:
+        - containerPort: 80
