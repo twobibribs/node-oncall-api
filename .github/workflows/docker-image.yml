@@ -39,6 +39,10 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
     - name: Run Orca Container Image Scan
+      env:
+        ECR_REGISTRY: ${{ steps.login-pf-aws-ecr.outputs.registry }}
+        ECR_REPOSITORY: "oncall"
+        IMAGE_TAG: ${{ github.run_number }}
       uses: orcasecurity/shiftleft-container-image-action@v1
       id: orcasecurity_container_image_scan
       with:
