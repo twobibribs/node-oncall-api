@@ -57,4 +57,7 @@ jobs:
       if: ${{ always() && steps.orcasecurity_container_image_scan.outputs.exit_code != 1 }}
       with:
         sarif_file: results/image.sarif
-
+    - uses: actions/upload-artifact@v4
+      with:
+        name: sarif
+        path: results/image.sarif
