@@ -44,7 +44,7 @@ jobs:
       with:
         api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
         project_key: ${{ env.PROJECT_KEY }}
-        image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        image: ${{ ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG }}
         format: "sarif"
         output:
           "results/"
