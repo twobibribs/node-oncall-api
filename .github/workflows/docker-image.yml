@@ -11,7 +11,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    permissions:
+      security-events: write
+    env: 
+      PROJECT_KEY: simple
     steps:
     - uses: actions/checkout@v3
     - name: Setup AWS ECR Details
@@ -35,5 +38,19 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-
+    - name: Run Orca Container Image Scan
+      uses: orcasecurity/shiftleft-container-image-action@v1
+      id: orcasecurity_container_image_scan
+      with:
+        api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
+        project_key: ${{ env.PROJECT_KEY }}
+        image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        format: "sarif"
+        output:
+          "results/"
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v2
+      if: ${{ always() && steps.orcasecurity_container_image_scan.outputs.exit_code != 1 }}
+      with:
+        sarif_file: results/image.sarif
 
