@@ -7,13 +7,14 @@
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Neil Carpenter <neil.carpenter@torq.io>",
+  "author": "Neil Carpenter <neil.carpenter@2bibribs>",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "md5": "^2.2.1",
     "nw-gyp": "^3.6.5",
+    "@urql/next": "1.1.0",
     "sqlite3": "^4.2.0"
   }
 }
