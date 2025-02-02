@@ -32,7 +32,7 @@ Get a list of users
 
 ## GET /api/user/{tenant}
 
-Get user information by user id
+Get user information by user ID
 
 ```json
 {
