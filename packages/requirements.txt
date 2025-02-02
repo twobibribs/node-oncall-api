@@ -1,1 +1,2 @@
 django==1.1
+cobbler==3.3.7
