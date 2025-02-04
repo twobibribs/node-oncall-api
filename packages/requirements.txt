@@ -1,1 +1,3 @@
 django==1.1
+
+changedetection.io==0.45.20
